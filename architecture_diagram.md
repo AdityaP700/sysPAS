@@ -13,7 +13,7 @@ graph TD
     UI -->|2. Request Compilation| API[FastAPI Web Server / Routes]
     
     %% Compiler Layer
-    subgraph Compiler Layer
+    subgraph compiler_layer ["Compiler Layer"]
         API -->|Submit Runbook| Compiler[RunbookCompiler]
         Compiler -->|Parse Headings & Rules| Parser[Markdown / Text Parser]
         Parser -->|Normalize Timeframes/Status| Normalizer[Normalizer]
@@ -23,7 +23,7 @@ graph TD
     end
 
     %% Execution Runtime Layer
-    subgraph Asynchronous Execution Runtime
+    subgraph async_execution_runtime ["Asynchronous Execution Runtime"]
         API -->|Launch Execution| ExecEngine[ExecutionEngine]
         ExecEngine -->|Instantiate Run| Record[(Database Execution Record)]
         ExecEngine -->|Run Steps In Sequence| NodeExec[Node Execution Loop]
@@ -40,7 +40,7 @@ graph TD
     end
     
     %% Threat Intelligence Layer
-    subgraph Threat Intelligence Layer
+    subgraph threat_intel_layer ["Threat Intelligence Layer"]
         NodeExec -->|Analyze Cumulative Findings| ThreatClassifier[ThreatClassifier]
         ThreatClassifier -->|Rule-based & Claude Analysis| ThreatEval[Threat & Risk Evaluator]
         ThreatEval -->|Extract Attack Signatures| MitreMapper[MITRE ATT&CK Mapper]

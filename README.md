@@ -25,7 +25,7 @@ graph TD
     User([Security Analyst]) -->|1. Select Preset/Write SOP| UI[Streamlit Frontend Console]
     UI -->|2. POST /compile| Comp[Runbook Compiler]
     
-    subgraph Compiler Core
+    subgraph compiler_core ["Compiler Core"]
         Comp -->|Parse| Parser[Markdown & Text Parser]
         Parser -->|Normalize| Norm[Value & Temporal Normalizer]
         Norm -->|Validate| Val[Runbook Validator]
@@ -35,7 +35,7 @@ graph TD
 
     Graph -->|3. POST /executions/start| Engine[Execution Engine]
     
-    subgraph Execution Loop (Up to 5 steps)
+    subgraph execution_loop ["Execution Loop (Up to 5 steps)"]
         Engine -->|4. Run Query| Runner[Splunk Query Runner]
         Runner -->|5. Fetch Logs| Splunk[(Splunk Instance / Mock Data)]
         Splunk -->|6. Logs/Events| Engine
